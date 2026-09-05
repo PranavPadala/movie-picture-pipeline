@@ -25,14 +25,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
-          cache: pip
-          cache-dependency-path: "starter/backend/Pipfile.lock"
 
       - name: Install pipenv
         run: pip install pipenv
 
       - name: Install dependencies
-        run: pipenv install --dev
+        run: pipenv sync --dev
 
       - name: Run lint
         run: pipenv run lint
@@ -52,14 +50,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
-          cache: pip
-          cache-dependency-path: "starter/backend/Pipfile.lock"
 
       - name: Install pipenv
         run: pip install pipenv
 
       - name: Install dependencies
-        run: pipenv install --dev
+        run: pipenv sync --dev
 
       - name: Run tests
         run: pipenv run test
@@ -77,4 +73,4 @@ jobs:
 
       - name: Build Docker image
         working-directory: starter/backend
-        run: docker build --tag mp-backend:latest . 
+        run: docker build --tag mp-backend:latest .
